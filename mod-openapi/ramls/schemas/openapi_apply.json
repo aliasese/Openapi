@@ -1,0 +1,42 @@
+{
+  "title": "openApi Apply Schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "required": true
+    },
+    "tenant_id": {
+      "type": "string",
+      "required": true
+    },
+    "openApi_id": {
+      "type": "integer",
+      "required": true
+    },
+    "applicant_name": {
+      "type": "string",
+      "required": true
+    },
+    "applicant_email": {
+      "type": "string",
+      "required": true
+    },
+    "applicant_phone": {
+      "type": "string",
+      "required": true
+    },
+    "create_time": {
+      "type": "string",
+      "required": true
+    },
+    "update_time": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

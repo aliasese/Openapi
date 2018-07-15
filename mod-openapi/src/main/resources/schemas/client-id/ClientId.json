@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ClientId Define",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "client_id": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "title": "clientKeyApplyPageQueryCondition.json Schema",
+  "type": "object",
+  "properties": {
+    "tenantName": {
+      "type": "string",
+      "required": false
+    },
+    "applyDatef": {
+      "type": "string",
+      "required": false
+    },
+    "applyDatet":{
+      "type":"string",
+      "required": false
+    },
+    "pageNum":{
+      "type":"integer",
+      "required": false
+    },
+    "pageRecordCount":{
+      "type":"integer",
+      "required": false
+    },
+    "orderField":{
+      "type":"string",
+      "required": false
+    },
+    "orderType":{
+      "type":"string",
+      "required": false
+    }
+  }
+}

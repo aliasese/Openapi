@@ -1,0 +1,77 @@
+#%RAML 0.8
+title: Task
+version: v1.0.1
+baseUri: http://github.com/org/folio/mod-users
+
+documentation:
+  - title: Big Data Analysis Platform Task API
+    content: This documents the API calls that can be made to query and manage tasks of the system
+
+schemas:
+  - task.json: !include ../../../ramls/schemas/task.json
+  - tasks: !include ../../../ramls/schemas/tasks.json
+  - taskCredentials: !include ../../../ramls/schemas/taskCredentials.json
+
+traits:
+  - pageable: !include ../../traits/pageable.raml
+  - tenant: !include ../../traits/tenant.raml
+
+/tasks:
+  get:
+    description: return all the tasks of the system
+    is: [pageable]
+    responses:
+          200:
+            description: "returns a list of tasks successfully"
+            body:
+              application/json:
+                schema: tasks
+          400:
+            description: "Bad request"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+  post:
+    description: create a task
+    body:
+     application/json:
+      schema: taskCredentials
+  /{taskId}:
+      get:
+       description: get details of the task
+#       is: [tenant]
+       responses:
+              200:
+                description: "returns a task successfully"
+                body:
+                  application/json:
+                    schema: task.json
+              400:
+                description: "Bad request"
+              500:
+                description: "Internal server error"
+                body:
+                  text/plain:
+                    example: "Internal server error, contact administrator"
+      post:
+        description: change status of a task.example for stop ,start,sleep
+#        is: [tenant]
+      delete:
+        description: delete a task
+#        is: [tenant]
+        responses:
+               204:
+                 body:
+                   text/plain: !!null
+               404:
+                 description: "task not found"
+                 body:
+                   text/plain:
+                     example: "task not found"
+               500:
+                 description: "task server error"
+                 body:
+                   text/plain:
+                    example: "task server error"

@@ -1,0 +1,32 @@
+{
+  "name":"name",
+  "summary":"summary",
+  "catalog":"catalog",
+  "status":0,
+  "publish_url":"publish_url",
+  "deploy_url":"deploy_url",
+  "publish_test_url":"publish_test_url",
+  "deploy_test_url":"deploy_test_url",
+  "common_params":[{
+    "cpname":"AppKey",
+    "type":"string",
+    "required":true,
+    "description":"description"
+  }],
+  "private_params":[
+    {
+      "cpname":"param1",
+      "type":"string",
+      "required":true,
+      "description":"description"
+    }
+  ],
+  "outputs":[
+    {
+      "cpname":"param1",
+      "type":"string",
+      "required":true,
+      "description":"description"
+    }
+  ]
+}

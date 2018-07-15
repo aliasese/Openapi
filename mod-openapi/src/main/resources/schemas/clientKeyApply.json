@@ -1,0 +1,50 @@
+{
+  "title": "create clientKeyApply.json Schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": false
+    },
+    "tenantID": {
+      "type": "string",
+      "required": true
+    },
+    "tenantName": {
+      "type": "string",
+      "required": true
+    },
+    "appName": {
+      "type": "string",
+      "required": true
+    },
+    "clientId": {
+      "type": "string",
+      "required": true
+    },
+    "appUrl": {
+      "type": "string",
+      "required": true
+    },
+    "applyMan": {
+      "type": "string",
+      "required": true
+    },
+    "applyManEmail": {
+      "type": "string",
+      "required": true
+    },
+    "applyManPhone": {
+      "type": "string",
+      "required": true
+    },
+    "applyDate": {
+      "type": "string",
+      "required": false
+    },
+    "status": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

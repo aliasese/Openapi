@@ -1,0 +1,294 @@
+#%RAML 0.8
+title: Tenant API Authorization Management
+version: v1.0.1
+
+documentation:
+  - title: Open-API Management API
+    content: This documents the API calls that can be made to query and manage openapis be authorized to tenants
+
+schemas:
+  - apply: !include schemas/apply.json
+  - createResp: !include schemas/createResp.json
+  - openapiApply: !include schemas/apiList.json
+  - applyData: !include schemas/applyData.json
+  - log: !include schemas/log.json
+  - catalog: !include schemas/catalog.json
+  - tenant: !include schemas/tenant.json
+  - applyPageQueryCondition: !include schemas/applyPageQueryCondition.json
+  - authorizePageQueryCondition: !include schemas/authorizePageQueryCondition.json
+  - apply_pageQuery_Response: !include schemas/apply_pageQuery_Response.json
+  - ApplyPageQueryResp: !include schemas/ApplyPageQueryResp.json
+  - reason: !include schemas/reason.json
+  - authShowData: !include schemas/authShowData.json
+  - authApplyData: !include schemas/authApplyData.json
+  - authApplyDataLog: !include schemas/authApplyDataLog.json
+  - approveData: !include schemas/approveData.json
+  - deleteData: !include schemas/approveData.json
+  - refuseData: !include schemas/refuseData.json
+  - TenantApplyTB2Entity: !include schemas/TenantApplyTB2Entity.json
+  - TenantApplyShowClientId: !include schemas/TenantApplyShowClientId.json
+  - TenantApplyShowClientIds: !include schemas/TenantApplyShowClientIds.json
+  - catalogResp: !include schemas/catalogResp.json
+  - ArrayEntity: !include schemas/ArrayEntity.json
+  - DeleteResp: !include schemas/DeleteResp.json
+
+/api_apply:
+  /openapi:
+    post:
+      description: acquire openapi by catalog
+      body:
+        application/json:
+          schema: catalog
+      responses:
+          200:
+            description: "get openapi by catalog successfully"
+            body:
+             application/json:
+               schema: openapiApply
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          400:
+            description: "Bad request"
+          500:
+            description: "openapi server error"
+            body:
+              text/plain:
+                example: "openapi server error"
+    get:
+      description: get OpenAPI catalog
+      responses:
+          200:
+            description: "authorize APIs for tenants successfully"
+            body:
+             application/json:
+               schema: catalogResp
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail authorize Openapi for tenant"
+          500:
+            description: "openapi server error"
+            body:
+              text/plain:
+                example: "openapi server error"
+  post:
+     description: authorize APIs for tenants
+     body:
+      application/json:
+        schema: applyData
+     responses:
+          200:
+            description: "authorize APIs for tenants successfully"
+            body:
+             application/json:
+               schema: createResp
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail authorize Openapi for tenant"
+          500:
+            description: "openapi server error"
+            body:
+              text/plain:
+                example: "openapi server error"
+  /page_query:
+    post:
+      description: Process Tenant's Apply Page Query
+      body:
+          application/json:
+            schema: applyPageQueryCondition
+      responses:
+          200:
+            description: "authorize APIs for tenants successfully"
+            body:
+             application/json:
+               schema: apply_pageQuery_Response
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail authorize Openapi for tenant"
+          500:
+            description: "openapi server error"
+            body:
+              text/plain:
+                example: "openapi server error"
+  /approve:
+    post:
+        description: Batch Approve Tenant's apply for OpenAPI
+        body:
+          application/json:
+            schema: approveData
+        responses:
+          200:
+            description: "returns a updated openapidoc successfully"
+            body:
+             application/json:
+               schema: createResp
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "openapidoc not found"
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+  /refuse/{tenantApplyId}:
+    post:
+      description: Refuse tenant's apply
+      body:
+          application/json:
+            schema: refuseData
+      responses:
+          200:
+            description: "authorize APIs for tenants successfully"
+            body:
+             application/json:
+               schema: createResp
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail authorize Openapi for tenant"
+          500:
+            description: "openapi server error"
+            body:
+              text/plain:
+                example: "openapi server error"
+  /delete:
+    post:
+      description: Batch Delete tenant's apply
+      body:
+        application/json:
+          schema: deleteData
+      responses:
+          200:
+            description: "authorize APIs for tenants successfully"
+            body:
+             application/json:
+               schema: DeleteResp
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail authorize Openapi for tenant"
+          500:
+            description: "openapi server error"
+            body:
+              text/plain:
+                example: "openapi server error"
+  /authorize:
+    /show/{tenantApplyId}:
+      get:
+        description: 根据tenantApplyId获取Tenant申请OpenAPI详情
+        responses:
+            200:
+              description: "authorize APIs for tenants successfully"
+              body:
+               application/json:
+                 schema: TenantApplyShowClientId
+            404:
+              description: "openapi not found"
+              body:
+                text/plain:
+                  example: "openapi not found"
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Fail authorize Openapi for tenant"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+    /page_query:
+      post:
+        description: Page Query of Authorize OpenAPI for Tenant
+        body:
+            application/json:
+              schema: authorizePageQueryCondition
+        responses:
+            200:
+              description: "authorize APIs for tenants successfully"
+              body:
+               application/json:
+                 schema: apply_pageQuery_Response
+            404:
+              description: "openapi not found"
+              body:
+                text/plain:
+                  example: "openapi not found"
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Fail authorize Openapi for tenant"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+    post:
+      description: Authorize tenant's apply
+      body:
+          application/json:
+            schema: authApplyDataLog
+      responses:
+          200:
+            description: "authorize APIs for tenants successfully"
+            body:
+             application/json:
+               schema: createResp
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail authorize Openapi for tenant"
+          500:
+            description: "openapi server error"
+            body:
+              text/plain:
+                example: "openapi server error"

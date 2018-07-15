@@ -1,0 +1,87 @@
+#%RAML 0.8
+title: Folder
+version: v1.0.1
+baseUri: http://github.com/org/folio/mod-users
+
+documentation:
+  - title: Big Data Analysis Platform Folder API
+    content: This documents the API calls that can be made to query and manage folders of the system
+
+schemas:
+  - folder.json: !include ../../../ramls/schemas/folder.json
+  - folders: !include ../../../ramls/schemas/folders.json
+  - folderCredentials: !include ../../../ramls/schemas/folderCredentials.json
+
+traits:
+  - pageable: !include ../../traits/pageable.raml
+  - tenant: !include ../../traits/tenant.raml
+
+/folders:
+  get:
+    description: Return a list of folders
+    is: [pageable]
+    responses:
+          200:
+            description: "returns a list of folders successfully"
+            body:
+              application/json:
+                schema: folders
+          400:
+            description: "Bad request"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+
+  post:
+    description: create a folder
+    body:
+     application/json:
+      schema: folderCredentials
+#      创建时从folderCredentials获取到租客的信息，得知该存在哪个馆
+  /{folderId}:
+   get:
+     description: get information of a folder
+#     is: [tenant]
+     responses:
+               200:
+                 description: "returns a folder successfully"
+                 body:
+                   application/json:
+                     schema: folder.json
+               400:
+                 description: "Bad request"
+               500:
+                 description: "Internal server error"
+                 body:
+                   text/plain:
+                     example: "Internal server error, contact administrator"
+   post:
+     description: rename a folder
+     queryParameters:
+#            tenant_id:
+#              type: string
+#              required: true
+            newName:
+              type: string
+              required: true
+   delete:
+     description: delete a folder
+#     is: [tenant]
+     responses:
+          204:
+            body:
+              text/plain: !!null
+          404:
+            description: "folder not found"
+            body:
+              text/plain:
+                example: "folder not found"
+          500:
+            description: "folder server error"
+            body:
+              text/plain:
+                example: "folder server error"
+
+

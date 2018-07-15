@@ -1,0 +1,94 @@
+{
+  "title": "openApi Schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": false
+    },
+    "onlineSrvcId": {
+      "type": "string",
+      "required": false
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "method": {
+      "type":"array",
+      "required": true,
+      "items":{
+        "type":"string"
+      }
+    },
+    "summary":{
+      "type":"string",
+      "required": true
+    },
+    "catalog": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "visit_url": {
+      "type": "string",
+      "required": true
+    },
+    "visit_test_url": {
+      "type": "string",
+      "required": true
+    },
+    "publish_url": {
+      "type": "string",
+      "required": true
+    },
+    "deploy_url": {
+      "type": "string",
+      "required": true
+    },
+    "publish_test_url": {
+      "type": "string",
+      "required": true
+    },
+    "deploy_test_url": {
+      "type": "string",
+      "required": true
+    },
+    "common_params": {
+      "type":"array",
+      "items":{
+        "type":"object",
+        "$ref":"CommonParam"
+      }
+    },
+    "private_params": {
+      "type":"array",
+      "items":{
+        "type":"object",
+        "$ref":"CommonParam"
+      }
+    },
+    "outputs": {
+      "type":"array",
+      "items":{
+        "type":"object",
+        "$ref":"CommonParam"
+      }
+    },
+    "status": {
+      "type": "string",
+      "required": false
+    },
+    "create_time": {
+      "type": "string",
+      "required": false
+    },
+    "update_time": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

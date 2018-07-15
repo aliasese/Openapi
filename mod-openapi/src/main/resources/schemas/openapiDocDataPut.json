@@ -1,0 +1,19 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "title": "create openapi response Schema",
+  "type": "object",
+  "properties": {
+    "log": {
+      "type": "object",
+      "$ref":"log"
+    },
+    "openapiDocPut": {
+      "type": "object",
+      "$ref":"openapiDocPut"
+    }
+  },
+  "required":[
+    "log",
+    "openapiDocPut"
+  ]
+}

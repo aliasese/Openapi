@@ -1,0 +1,176 @@
+#%RAML 0.8
+title: OpenAPIDOC
+version: v1.0.1
+
+documentation:
+  - title: Open-API Management API
+    content: This documents the API calls that can be made to query and manage openapis of the system
+
+schemas:
+  - createResp: !include schemas/createResp.json
+  - openapiDocData: !include schemas/openapiDocData.json
+  - openapiDocCondition: !include schemas/openapiDocCondition.json
+  - openapidocPageQueryResp: !include schemas/openapidocPageQueryResp.json
+  - openapiDocPage: !include schemas/openapidoc/openapiDocPage.json
+  - openapidocs: !include schemas/openapidocs.json
+  - openapiDocPut: !include schemas/openapiDocPut.json
+  - log: !include schemas/log.json
+  - openapiDoc: !include schemas/openapiDoc.json
+  - openapiDocDataPut: !include schemas/openapiDocDataPut.json
+  - Title: !include schemas/openapidoc/Title.json
+traits:
+  - pageable: !include ../raml-util/traits/pageable.raml
+  - tenant: !include ../raml-util/traits/tenant.raml
+  - searchable: !include ../raml-util/traits/searchable.raml
+/openapidoc:
+  /check/title:
+      post:
+        description: "Check if OpenAPIDoc title exists"
+        body:
+          application/json:
+            schema: Title
+        responses:
+             200:
+               description: "Title doesn't exist"
+               body:
+                 text/plain:
+                    example: "success"
+             400:
+               description: "Bad request"
+               body:
+                 text/plain:
+                   example: "Title has existed"
+             500:
+               description: "Internal server error"
+               body:
+                 text/plain:
+                   example: "Internal server error, contact administrator"
+  /create/post:
+      post:
+        description: OpenAPI Document Release
+        body:
+            application/json:
+              schema: openapiDocData
+        responses:
+              200:
+                description: "returns a list of openapis successfully"
+                body:
+                  application/json:
+                    schema: createResp
+              400:
+                description: "Bad request"
+                body:
+                  text/plain:
+                    example: "Fail to start Openapi"
+              404:
+                description: "openapi not found"
+                body:
+                  text/plain:
+                    example: "openapi not found"
+              500:
+                description: "Internal server error"
+                body:
+                  text/plain:
+                    example: "Internal server error, contact administrator"
+  post:
+    description: Get OpenAPI Document List
+    body:
+      application/json:
+          schema: openapiDocCondition
+    responses:
+          200:
+            description: "returns a list of openapis successfully"
+            body:
+              application/json:
+                schema: openapidocs
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail to start Openapi"
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+  /{openapidocid}:
+    get:
+      description: Get single OpenAPI Doc detail Info
+      responses:
+         200:
+           description: "returns a openapi DOC successfully"
+           body:
+             application/json:
+               schema: openapiDoc
+         400:
+           description: "Bad request"
+           body:
+             text/plain:
+               example: "Fail to start Openapi"
+         404:
+           description: "openapi not found"
+           body:
+             text/plain:
+               example: "openapi not found"
+         500:
+           description: "Internal server error"
+           body:
+             text/plain:
+               example: "Internal server error, contact administrator"
+    post:
+         description: delete a openapidoc
+         body:
+           application/json:
+             schema: log
+         responses:
+              200:
+                description: "Delete a openapidoc successfully"
+                body:
+                 application/json:
+                   schema: createResp
+              400:
+                description: "Bad request"
+                body:
+                  text/plain:
+                    example: "Bad request"
+              404:
+                description: "openapidoc not found"
+                body:
+                  text/plain:
+                    example: "openapidoc not found"
+              500:
+                description: "openapidoc server error"
+                body:
+                  text/plain:
+                    example: "openapidoc server error"
+  put:
+    description: edit a openapidoc
+    body:
+      application/json:
+        schema: openapiDocDataPut
+    responses:
+      200:
+        description: "returns a updated openapidoc successfully"
+        body:
+         application/json:
+           schema: createResp
+      400:
+        description: "Bad request"
+        body:
+          text/plain:
+            example: "Fail to start Openapi"
+      404:
+        description: "openapi not found"
+        body:
+          text/plain:
+            example: "openapi not found"
+      500:
+        description: "Internal server error"
+        body:
+          text/plain:
+            example: "Internal server error, contact administrator"

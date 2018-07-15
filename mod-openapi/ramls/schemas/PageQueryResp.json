@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id":{
+      "type":"string",
+      "required": true
+    },
+    "name":{
+      "type":"string",
+      "required": true
+    },
+    "summary":{
+      "type":"string",
+      "required": true
+    },
+    "create_time":{
+      "type":"string",
+      "required": true
+    },
+    "status":{
+      "type":"string",
+      "required": true
+    }
+  },
+  "additionalProperties": true
+}

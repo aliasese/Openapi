@@ -1,0 +1,7 @@
+/target/
+.settings
+.classpath
+/.classpath
+/.project
+/.idea
+.vertx

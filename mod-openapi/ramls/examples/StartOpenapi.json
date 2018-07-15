@@ -1,0 +1,9 @@
+{
+  "log":{
+    "loginname":"Admin",
+    "tmname":"APP业务管理",
+    "fmname":"Module管理",
+    "smname":"Module注册Okapi"
+  },
+  "openapiIdArray":["9d8e0fe4f2a440999a01fd0dbfc9ca33"]
+}

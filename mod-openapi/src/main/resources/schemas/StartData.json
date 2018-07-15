@@ -1,0 +1,18 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "title": "create StartData.json Schema",
+  "type": "object",
+  "properties": {
+    "log": {
+      "type": "object",
+      "$ref":"log"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required":[
+    "log",
+    "reason"
+  ]
+}

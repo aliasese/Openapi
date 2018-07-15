@@ -1,0 +1,13 @@
+{
+  "title": "create catalogResp.json Schema",
+      "type":"array",
+      "items":{
+        "type":"object",
+        "properties":{
+          "catalog": {
+            "type": "string",
+            "required": true
+          }
+        }
+      }
+}

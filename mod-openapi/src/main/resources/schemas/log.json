@@ -1,0 +1,22 @@
+{
+  "title": "create openapi log Schema",
+  "type": "object",
+  "properties": {
+    "loginname": {
+      "type":"string",
+      "required":true
+    },
+    "tmname": {
+      "type":"string",
+      "required":true
+    },
+    "fmname": {
+      "type":"string",
+      "required":true
+    },
+    "smname": {
+      "type":"string",
+      "required":true
+    }
+  }
+}

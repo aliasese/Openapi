@@ -1,0 +1,16 @@
+{
+  "title": "create clientKeyApplyData.json Schema",
+  "type": "object",
+  "properties": {
+    "log": {
+      "type": "object",
+      "required": true,
+      "$ref":"log"
+    },
+    "clientKeyApplyData": {
+      "type": "object",
+      "required": true,
+      "$ref":"clientKeyApply"
+    }
+  }
+}

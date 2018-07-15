@@ -1,0 +1,38 @@
+{
+  "title": "create approveClientKeyInfo.json Schema",
+  "type":"object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": true
+    },
+    "approveMan": {
+      "type": "string",
+      "required": true
+    },
+    "appName": {
+      "type": "string",
+      "required": false
+    },
+    "appUrl": {
+      "type": "string",
+      "required": false
+    },
+    "clientSecret": {
+      "type": "string",
+      "required": true
+    },
+    "authModel": {
+      "type": "string",
+      "required": true
+    },
+    "approveDate": {
+      "type": "string",
+      "required": false
+    },
+    "expireDate": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "title": "authApplyData.json Schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": true
+    },
+    "clientSecret": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

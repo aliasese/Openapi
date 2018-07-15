@@ -1,0 +1,10 @@
+{
+  "title": "create openapi response Schema",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type":"boolean",
+      "required":true
+    }
+  }
+}

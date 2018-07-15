@@ -1,0 +1,449 @@
+#%RAML 0.8
+title: OpenAPI
+version: v1.0.1
+
+documentation:
+  - title: Open-API Management ClientKey
+    content: This documents the API calls that can be made to query and manage openapis of the system
+
+schemas:
+  - createResp: !include schemas/createResp.json
+  - log: !include schemas/log.json
+  - clientKeyApply: !include schemas/clientKeyApply.json
+  - clientKeyApplyData: !include schemas/clientKeyApplyData.json
+  - clientKeyApplyPageQueryCondition: !include schemas/clientKeyApplyPageQueryCondition.json
+  - clientKeyApplyPageQueryResp: !include schemas/clientKeyApplyPageQueryResp.json
+  - clientKeyApplyPageQueryData: !include schemas/clientKeyApplyPageQueryData.json
+  - clientKeyMonitorPageQueryCondition: !include schemas/clientKeyMonitorPageQueryCondition.json
+  - clientKeyMonitorPageQueryResp: !include schemas/clientKeyMonitorPageQueryResp.json
+  - clientKeyMonitorPageQueryData: !include schemas/clientKeyMonitorPageQueryData.json
+  - clientKeyInfo: !include schemas/clientKeyInfo.json
+  - approveClientKeyData: !include schemas/approveClientKeyData.json
+  - approveClientKeyInfo: !include schemas/approveClientKeyInfo.json
+  - refuseData: !include schemas/refuseData.json
+  - stopData: !include schemas/stopData.json
+  - StartData: !include schemas/StartData.json
+  - ClientId: !include schemas/client-id/ClientId.json
+  - ClientSecret: !include schemas/client-id/ClientSecret.json
+  - ClientName: !include schemas/client-id/ClientName.json
+traits:
+  - orderable: !include ../raml-util/traits/orderable.raml
+  - pageable: !include ../raml-util/traits/pageable.raml
+  - searchable: !include ../raml-util/traits/searchable.raml
+/clientkey:
+    /client_secret:
+      get:
+        description: 生成ClientSecret
+        is: [
+              searchable: {description: "with valid searchable fields", example: "active=true"},
+            ]
+        responses:
+          200:
+            description: success
+            body:
+              application/json:
+                 schema: ClientSecret
+          404:
+            description: "API not found"
+            body:
+              text/plain:
+                example: "获取全局唯一ClientSecret API not found"
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail 获取全局唯一ClientSecret for tenant"
+          500:
+            description: "openapi server error"
+            body:
+              text/plain:
+                example: "openapi server error"
+    /client_id:
+      get:
+        description: 获取全局唯一ClientId
+        responses:
+          200:
+            description: success
+            body:
+              application/json:
+                 schema: ClientId
+          404:
+            description: "API not found"
+            body:
+              text/plain:
+                example: "获取全局唯一ClientId API not found"
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail 获取全局唯一ClientId for tenant"
+          500:
+            description: "openapi server error"
+            body:
+              text/plain:
+                example: "openapi server error"
+      put:
+        description: Modify client_id info
+        body:
+          application/json:
+            schema: approveClientKeyData
+        responses:
+          200:
+            description: "Modify client_id info successfully"
+            body:
+             application/json:
+               schema: createResp
+          404:
+            description: "Modify client_id info not found"
+            body:
+              text/plain:
+                example: "Modify client_id info not found"
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail  Modify client_id info"
+          500:
+            description: "Modify client_id info server error"
+            body:
+              text/plain:
+                example: "Modify client_id info server error"
+    /check_exist/client_name:
+      post:
+        description: 校验client_name唯一性
+        is: [
+              searchable: {description: "with valid searchable fields", example: "active=true"},
+            ]
+        body:
+          application/json:
+            schema: ClientName
+        responses:
+            200:
+              description: "校验client_name唯一性 successfully"
+              body:
+               application/json:
+                  schema: createResp
+            404:
+              description: "校验client_name唯一性 API not found"
+              body:
+                text/plain:
+                  example: "校验client_name唯一性 API not found"
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Fail authorize Openapi for tenant"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+    /checkExist/{clientId}:
+      get:
+        description: 校验clientId唯一性
+        responses:
+            200:
+              description: "get ClientSecret by clientId successfully"
+              body:
+               text/plain:
+                     example: 校验clientId唯一性 success
+            404:
+              description: "ClientKey Apply not found"
+              body:
+                text/plain:
+                  example: "ClientKey Apply not found"
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Fail authorize Openapi for tenant"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+    post:
+       description: ClientKey Apply
+       body:
+        application/json:
+          schema: clientKeyApplyData
+       responses:
+            200:
+              description: "ClientKay Apply successfully"
+              body:
+               application/json:
+                 schema: createResp
+            404:
+              description: "openapi not found"
+              body:
+                text/plain:
+                  example: "openapi not found"
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Fail authorize Openapi for tenant"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+    /page_query:
+      post:
+       description: ClientKay Apply Page Query
+       body:
+        application/json:
+          schema: clientKeyApplyPageQueryCondition
+       responses:
+            200:
+              description: "ClientKay Apply successfully"
+              body:
+               application/json:
+                 schema: clientKeyApplyPageQueryResp
+            404:
+              description: "openapi not found"
+              body:
+                text/plain:
+                  example: "openapi not found"
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Fail authorize Openapi for tenant"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+    /show/{id}:
+      get:
+        description: get ClientKey Apply Information
+        responses:
+            200:
+              description: "get ClientKey Apply Information successfully"
+              body:
+               application/json:
+                 schema: clientKeyApply
+            404:
+              description: "ClientKey Apply not found"
+              body:
+                text/plain:
+                  example: "ClientKey Apply not found"
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Fail authorize Openapi for tenant"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+    /approve:
+      post:
+         description: Approve ClientKay Apply
+         body:
+          application/json:
+            schema: approveClientKeyData
+         responses:
+              200:
+                description: "Approve ClientKey Apply successfully"
+                body:
+                 application/json:
+                   schema: createResp
+              404:
+                description: "ClientKey not found"
+                body:
+                  text/plain:
+                    example: "ClientKey not found"
+              400:
+                description: "Bad request"
+                body:
+                  text/plain:
+                    example: "Fail authorize Openapi for tenant"
+              500:
+                description: "openapi server error"
+                body:
+                  text/plain:
+                    example: "openapi server error"
+    /refuse/{id}:
+        post:
+          description: Refuse ClientKey Apply
+          body:
+              application/json:
+                schema: refuseData
+          responses:
+              200:
+                description: "authorize APIs for tenants successfully"
+                body:
+                 application/json:
+                   schema: createResp
+              404:
+                description: "openapi not found"
+                body:
+                  text/plain:
+                    example: "openapi not found"
+              400:
+                description: "Bad request"
+                body:
+                  text/plain:
+                    example: "Fail authorize Openapi for tenant"
+              500:
+                description: "openapi server error"
+                body:
+                  text/plain:
+                    example: "openapi server error"
+    /delete/{id}:
+        post:
+          description: Delete ClientKey apply
+          body:
+            application/json:
+              schema: log
+          responses:
+              200:
+                description: "Delete ClientKey apply successfully"
+                body:
+                 application/json:
+                   schema: createResp
+              404:
+                description: "ClientKey not found"
+                body:
+                  text/plain:
+                    example: "ClientKey not found"
+              400:
+                description: "Bad request"
+                body:
+                  text/plain:
+                    example: "Fail authorize Openapi for tenant"
+              500:
+                description: "openapi server error"
+                body:
+                  text/plain:
+                    example: "openapi server error"
+    /monitor:
+      /page_query:
+        post:
+           description: ClientKay Apply Monitor Page Query
+           body:
+            application/json:
+              schema: clientKeyMonitorPageQueryCondition
+           responses:
+                200:
+                  description: "ClientKay Apply successfully"
+                  body:
+                   application/json:
+                     schema: clientKeyMonitorPageQueryResp
+                404:
+                  description: "openapi not found"
+                  body:
+                    text/plain:
+                      example: "openapi not found"
+                400:
+                  description: "Bad request"
+                  body:
+                    text/plain:
+                      example: "Fail authorize Openapi for tenant"
+                500:
+                  description: "openapi server error"
+                  body:
+                    text/plain:
+                      example: "openapi server error"
+      /stop/{id}:
+        post:
+          description: Stop ClientKey
+          body:
+              application/json:
+                schema: stopData
+          responses:
+              200:
+                description: "authorize APIs for tenants successfully"
+                body:
+                 application/json:
+                   schema: createResp
+              404:
+                description: "openapi not found"
+                body:
+                  text/plain:
+                    example: "openapi not found"
+              400:
+                description: "Bad request"
+                body:
+                  text/plain:
+                    example: "Fail authorize Openapi for tenant"
+              500:
+                description: "openapi server error"
+                body:
+                  text/plain:
+                    example: "openapi server error"
+      /start/{id}:
+        post:
+          description: Start ClientKey
+          body:
+              application/json:
+                schema: StartData
+          responses:
+              200:
+                description: "authorize APIs for tenants successfully"
+                body:
+                 application/json:
+                   schema: createResp
+              404:
+                description: "openapi not found"
+                body:
+                  text/plain:
+                    example: "openapi not found"
+              400:
+                description: "Bad request"
+                body:
+                  text/plain:
+                    example: "Fail authorize Openapi for tenant"
+              500:
+                description: "openapi server error"
+                body:
+                  text/plain:
+                    example: "openapi server error"
+    /client_id/{clientId}:
+      get:
+        description: get ClientSecret by clientId
+        responses:
+            200:
+              description: "get ClientSecret by clientId successfully"
+              body:
+               application/json:
+                 schema: clientKeyInfo
+            404:
+              description: "ClientKey Apply not found"
+              body:
+                text/plain:
+                  example: "ClientKey Apply not found"
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Fail authorize Openapi for tenant"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+    /checkIP/{ipv4}:
+      get:
+        description: 校验应用访问地址IPV4合法性
+        responses:
+            200:
+              description: "应用访问地址IPV4合法"
+              body:
+               text/plain:
+                     example: "应用访问地址IPV4合法"
+            400:
+              description: "应用访问地址IPV4合法"
+              body:
+                text/plain:
+                  example: "应用访问地址IPV4不合法"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+
+

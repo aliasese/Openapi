@@ -1,0 +1,40 @@
+{
+  "title": "authShowData.json Schema",
+  "type": "object",
+  "properties": {
+    "catalog": {
+      "type": "string",
+      "required": true
+    },
+    "tenantName": {
+      "type": "string",
+      "required": true
+    },
+    "openapiNameArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+      }
+    },
+    "applyDate": {
+      "type": "string",
+      "required": true
+    },
+    "applyMan": {
+      "type": "string",
+      "required": true
+    },
+    "applyManEmail": {
+      "type": "string",
+      "required": true
+    },
+    "applyManPhone": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "create authorize APIs for tenants Schema",
+  "type": "object",
+  "properties": {
+    "catalog": {
+      "type":"string",
+      "required":true
+    },
+    "apply_man": {
+      "type":"string",
+      "required":true
+    },
+    "apply_man_email": {
+      "type":"string",
+      "required":true
+    },
+    "apply_man_phone": {
+      "type":"string",
+      "required":true
+    },
+    "openapiArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+      }
+    },
+    "tenantArray": {
+      "type":"array",
+      "items":{
+        "type":"object",
+          "properties":{
+            "id": {
+              "type": "string",
+              "required": true
+            },
+            "tenantName": {
+              "type": "string",
+              "required": true
+            }
+          }
+      }
+    }
+  }
+}

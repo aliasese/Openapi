@@ -1,0 +1,10 @@
+{
+  "title": "create catalog Schema",
+  "type": "object",
+  "properties": {
+    "catalog": {
+      "type":"string",
+      "required":false
+    }
+  }
+}

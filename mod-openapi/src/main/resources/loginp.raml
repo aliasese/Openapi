@@ -1,0 +1,71 @@
+#%RAML 0.8
+title: OpenAPIProxy
+version: v1.0.1
+
+documentation:
+  - title: Open-API login API
+    content: 此CLSP平台登录接口用于接收从Open API转发的登录请求，用户在CLSP平台登录成功要回调到Open API上
+
+schemas:
+  - Login: !include schemas/Login.json
+  - header: !include schemas/header.json
+  - body: !include schemas/body.json
+
+/loginp:
+    get:
+       description: 接收Open API URI参数,跳转到LSP登录页面
+       responses:
+           302:
+             description: "returns a openapi successfully"
+             body:
+               text/html:
+                    example: "https://www.baidu.com/"
+           400:
+             description: "Bad request"
+             body:
+               text/plain:
+                 example: "Bad Request"
+           404:
+             description: "openapi not found"
+             body:
+               text/plain:
+                 example: "openapi not found"
+           500:
+             description: "Internal server error"
+             body:
+               text/plain:
+                 example: "Internal server error, contact administrator"
+    post:
+       description: 为LSP登录页面提供后端接口,将参数发送给FOLIO mod-users-bl,登录成功后跳转到'外部应用系统的回调地址/loginp/code'
+       body:
+         application/json:
+           schema: Login
+       responses:
+           200:
+             description: "returns 200 successfully"
+             headers:
+              X-Okapi-Token:
+                example:  header
+             body:
+               application/json:
+                    schema: body
+           302:
+              description: "returns redirect_uri successfully"
+              body:
+                text/html:
+                     example: "https://www.baidu.com/"
+           400:
+             description: "Bad request"
+             body:
+               text/plain:
+                 example: "Bad Request"
+           404:
+             description: "openapi not found"
+             body:
+               text/plain:
+                 example: "openapi not found"
+           500:
+             description: "Internal server error"
+             body:
+               text/plain:
+                 example: "Internal server error, contact administrator"

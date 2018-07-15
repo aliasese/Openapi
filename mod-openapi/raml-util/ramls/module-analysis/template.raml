@@ -1,0 +1,97 @@
+#%RAML 0.8
+title: Template
+version: v1.0.1
+baseUri: http://github.com/org/folio/mod-users
+
+documentation:
+  - title: Big Data Analysis Platform Template API
+    content: This documents the API calls that can be made to query and manage templates of the system
+
+schemas:
+  - template.json: !include ../../../ramls/schemas/template.json
+  - templates: !include ../../../ramls/schemas/templates.json
+  - templateCredentials: !include ../../../ramls/schemas/templateCredentials.json
+
+traits:
+  - pageable: !include ../../traits/pageable.raml
+  - tenant: !include ../../traits/tenant.raml
+
+/templates:
+  get:
+    description: Return a list of templates
+    is: [pageable]
+    responses:
+          200:
+            description: "returns a list of templates successfully"
+            body:
+              application/json:
+                schema: templates
+          400:
+            description: "Bad request"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+
+  post:
+    description: create a template
+    body:
+     application/json:
+      schema: templateCredentials
+  /{templateId}:
+   get:
+     description: get details of a template
+#     is: [tenant]
+     responses:
+               200:
+                 description: "returns a template successfully"
+                 body:
+                   application/json:
+                     schema: template.json
+               400:
+                 description: "Bad request"
+               500:
+                 description: "Internal server error"
+                 body:
+                   text/plain:
+                     example: "Internal server error, contact administrator"
+
+   post:
+     description: edit a template
+     queryParameters:
+#            tenant_id:
+#              type: string
+#              required: true
+            folder_id:
+              type: integer
+              required: false
+#              folder_id为true时，表示移动模板，反之，不移动
+            sql:
+              type: string
+              required: false
+            shared:
+              type: integer
+              required: false
+            newName:
+              type: string
+              required: false
+   delete:
+     description: delete a template
+#     is: [tenant]
+     responses:
+               204:
+                 body:
+                   text/plain: !!null
+               404:
+                 description: "template not found"
+                 body:
+                   text/plain:
+                     example: "template not found"
+               500:
+                 description: "template server error"
+                 body:
+                   text/plain:
+                     example: "template server error"
+
+

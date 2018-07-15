@@ -1,0 +1,82 @@
+#%RAML 0.8
+title: sharedTemplate
+version: v1.0.1
+baseUri: http://github.com/org/folio/mod-users
+
+documentation:
+  - title: Big Data Analysis Platform Shared Template API
+    content: This documents the API calls that can be made to query and manage shared templates of the system
+
+schemas:
+  - sharedTemplate.json: !include ../../../ramls/schemas/sharedTemplate.json
+  - sharedTemplates: !include ../../../ramls/schemas/sharedTemplates.json
+
+#以下所有的接口都是针对公共库而言
+/sharedTemplate:
+  get:
+   description: get shared templates
+#   queryParameters:
+#     tenant_id:
+#       type: string
+#       required: true
+       #如果租客信息为一个特定的值，表示为全国共享的模板
+   responses:
+          200:
+            description: "returns a list of templates successfully"
+            body:
+              application/json:
+                schema: sharedTemplates
+          400:
+            description: "Bad request"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+  post:
+     description: create a shared template
+     queryParameters:
+       old_template_id:
+        type: integer
+        required: true
+       create_id:
+        type: integer
+        required: true
+       old_tenant_id:
+        type: string
+        required: true
+        # 原来所在馆的租客id
+  /{sharedTemplateId}:
+    get:
+     description: get details of a shared teamplate
+     responses:
+            200:
+              description: "returns a  template successfully"
+              body:
+                application/json:
+                  schema: sharedTemplate.json
+            400:
+              description: "Bad request"
+            500:
+              description: "Internal server error"
+              body:
+                text/plain:
+                  example: "Internal server error, contact administrator"
+
+    delete:
+      description: delete share of a template
+      responses:
+                 204:
+                   body:
+                     text/plain: !!null
+                 404:
+                   description: "template not found"
+                   body:
+                     text/plain:
+                       example: "template not found"
+                 500:
+                   description: "template server error"
+                   body:
+                     text/plain:
+                       example: "template server error"
+

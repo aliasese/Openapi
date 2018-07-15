@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "PageQueryResp": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "PageQueryResp"
+      }
+    },
+    "totalRecords": {
+      "type": "integer"
+    },
+    "pageCount":{
+      "type": "integer"
+    },
+    "pageNum":{
+      "type": "integer"
+    }
+  }
+}

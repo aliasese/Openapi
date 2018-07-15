@@ -1,0 +1,41 @@
+{
+  "title": "create ArrayEntity.json Schema",
+  "type": "object",
+  "properties": {
+    "existIdArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+      }
+    },
+    "notExistIdArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+      }
+    },
+    "openapiInfo": {
+      "type":"array",
+      "items":{
+        "type":"object",
+        "$ref":"openapiInfo"
+      }
+    },
+    "successIdArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+      }
+    },
+    "failIdArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+    },
+    "recordLog": {
+      "type":"boolean",
+      "required":true
+    }
+    }
+  }
+}

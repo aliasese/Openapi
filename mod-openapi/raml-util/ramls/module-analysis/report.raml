@@ -1,0 +1,68 @@
+#%RAML 0.8
+title: Report
+version: v1.0.1
+baseUri: http://github.com/org/folio/mod-users
+
+documentation:
+  - title: Big Data Analysis Platform Report API
+    content: This documents the API calls that can be made to query and manage reports of the system
+
+schemas:
+  - report.json: !include ../../../ramls/schemas/report.json
+  - reports: !include ../../../ramls/schemas/reports.json
+
+traits:
+  - pageable: !include ../../traits/pageable.raml
+  - tenant: !include ../../traits/tenant.raml
+
+/reports:
+  get:
+    description: Return a list of reports
+    is: [pageable]
+    responses:
+          200:
+            description: "returns a list of reports successfully"
+            body:
+              application/json:
+                schema: reports
+          400:
+            description: "Bad request"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+  /{reportId}:
+   get:
+     description: get information of a report
+#     is: [tenant]
+     responses:
+               200:
+                 description: "returns a report successfully"
+                 body:
+                   application/json:
+                     schema: report.json
+               400:
+                 description: "Bad request"
+               500:
+                 description: "Internal server error"
+                 body:
+                   text/plain:
+                     example: "Internal server error, contact administrator"
+   delete:
+     description: delete a report
+#     is: [tenant]
+     responses:
+          204:
+            body:
+              text/plain: !!null
+          404:
+            description: "report not found"
+            body:
+              text/plain:
+                example: "report not found"
+          500:
+            description: "report server error"
+            body:
+              text/plain:
+                example: "report server error"

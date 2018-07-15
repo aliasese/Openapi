@@ -1,0 +1,16 @@
+{
+  "title": "create DeleteResp.json Schema",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type":"boolean",
+      "required":true
+    },
+    "notExistIdArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+      }
+    }
+  }
+}

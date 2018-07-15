@@ -1,0 +1,16 @@
+{
+  "title": "create authApplyDataLog.json response Schema",
+  "type": "object",
+  "properties": {
+    "log": {
+      "type": "object",
+      "required": true,
+      "$ref":"log"
+    },
+    "authApplyData": {
+      "type": "object",
+      "required": true,
+      "$ref":"authApplyData"
+    }
+  }
+}

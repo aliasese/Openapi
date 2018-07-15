@@ -1,0 +1,54 @@
+{
+  "title": "openApi authorization Schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "required": true
+    },
+    "openApi_id": {
+      "type": "integer",
+      "required": true
+    },
+    "tenant_id": {
+      "type": "string",
+      "required": true
+    },
+    "client_key": {
+      "type": "string",
+      "required": true
+    },
+    "client_secret": {
+      "type": "string",
+      "required": true
+    },
+    "applicant_name": {
+      "type": "string",
+      "required": true
+    },
+    "applicant_email": {
+      "type": "string",
+      "required": true
+    },
+    "applicant_phone": {
+      "type": "string",
+      "required": true
+    },
+    "approved_date": {
+      "type": "string",
+      "required": true
+    },
+    "create_date": {
+      "type": "string",
+      "required": true
+    },
+    "update_time": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "folders": {
+      "id": "openapi_authorizations",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "openapi_authorization.json"
+      }
+    },
+    "totalRecords": {
+      "type": "integer"
+    }
+  }
+}

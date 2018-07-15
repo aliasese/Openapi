@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id":{
+      "type":"string",
+      "required": true
+    },
+    "title":{
+      "type":"string",
+      "required": true
+    },
+    "category":{
+      "type":"string",
+      "required": true
+    },
+    "update_time":{
+      "type":"string",
+      "required": true
+    },
+    "status":{
+      "type":"string",
+      "required": true
+    }
+  }
+}

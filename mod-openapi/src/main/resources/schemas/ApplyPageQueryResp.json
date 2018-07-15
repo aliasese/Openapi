@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id":{
+      "type":"string",
+      "required": true
+    },
+    "openapiArray":{
+      "type":"array",
+      "items":{
+        "type":"string"
+      }
+    },
+    "tenantName":{
+      "type":"string",
+      "required": true
+    },
+    "applyDate":{
+      "type":"string",
+      "required": true
+    },
+    "status":{
+      "type":"string",
+      "required": true
+    }
+  }
+}

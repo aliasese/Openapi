@@ -1,0 +1,68 @@
+{
+  "title": "authShowData.json Schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": false
+    },
+    "tenantID": {
+      "type": "string",
+      "required": true
+    },
+    "catalog": {
+      "type": "string",
+      "required": true
+    },
+    "tenantName": {
+      "type": "string",
+      "required": true
+    },
+    "openapiArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+      }
+    },
+    "applyDate": {
+      "type": "string",
+      "required": true
+    },
+    "applyMan": {
+      "type": "string",
+      "required": true
+    },
+    "applyManEmail": {
+      "type": "string",
+      "required": true
+    },
+    "applyManPhone": {
+      "type": "string",
+      "required": true
+    },
+    "approveDate": {
+      "type": "string",
+      "required": false
+    },
+    "refuseDate": {
+      "type": "string",
+      "required": false
+    },
+    "refuseReason": {
+      "type": "string",
+      "required": false
+    },
+    "authDate": {
+      "type": "string",
+      "required": false
+    },
+    "clientSecret": {
+      "type": "string",
+      "required": false
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

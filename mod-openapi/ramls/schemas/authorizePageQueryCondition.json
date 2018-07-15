@@ -1,0 +1,42 @@
+{
+  "title": "Authorize Openapi for Tenant Page query Schema",
+  "type": "object",
+  "properties": {
+    "apiName": {
+      "type": "string",
+      "required": false
+    },
+    "tenantName": {
+      "type": "string",
+      "required": false
+    },
+    "catalog":{
+      "type":"string",
+      "required": false
+    },
+    "authdatef":{
+      "type":"string",
+      "required": false
+    },
+    "authdatet":{
+      "type":"string",
+      "required": false
+    },
+    "pageNum":{
+      "type":"integer",
+      "required": false
+    },
+    "pageRecordCount":{
+      "type":"integer",
+      "required": false
+    },
+    "orderField":{
+      "type":"string",
+      "required": false
+    },
+    "orderType":{
+      "type":"string",
+      "required": false
+    }
+  }
+}

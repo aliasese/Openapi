@@ -1,0 +1,7 @@
+{
+"host": "localhost",
+"port": 6432,
+"database": "folio_db",
+"username": "folio_admin",
+"password": "password"
+}

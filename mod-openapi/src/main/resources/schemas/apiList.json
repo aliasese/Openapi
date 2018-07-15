@@ -1,0 +1,21 @@
+{
+  "title": "get openApi Schema",
+  "type": "array",
+  "items": {
+    "type":"object",
+      "properties":{
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "catalog": {
+          "type": "string",
+          "required": true
+        }
+      }
+  }
+}

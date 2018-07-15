@@ -1,0 +1,20 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "title": "create openapiApply Schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type":"string"
+    },
+    "tenantArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+        }
+      }
+    },
+  "required":[
+    "id",
+    "tenantArray"
+  ]
+}

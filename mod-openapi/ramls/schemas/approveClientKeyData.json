@@ -1,0 +1,18 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "log": {
+      "type": "object",
+      "$ref":"log"
+    },
+    "approveClientKeyInfo": {
+      "type": "object",
+      "$ref":"approveClientKeyInfo"
+    }
+  },
+  "required":[
+    "log",
+    "approveClientKeyInfo"
+  ]
+}

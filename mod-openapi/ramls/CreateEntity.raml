@@ -1,0 +1,64 @@
+#%RAML 0.8
+title: Tenant API Authorization Management
+version: v1.0.1
+
+documentation:
+  - title: Open-API Management API
+    content: This documents the API calls that can be made to query and manage openapis be authorized to tenants
+
+schemas:
+  - tenant: !include schemas/tenant.json
+  - openapiApplyTenant: !include schemas/openapiApply.json
+  - TenantApplyTB2Entity: !include schemas/TenantApplyTB2Entity.json
+  - ArrayEntity: !include schemas/ArrayEntity.json
+  - openapiInfo: !include schemas/openapi.json
+  - openapi: !include schemas/openapi.json
+  - CommonParam: !include schemas/Param.json
+
+/createEntity:
+  post:
+    description: post
+    body:
+      application/json:
+                schema: tenant
+    responses:
+               200:
+                 description: "returns a openapi successfully"
+                 body:
+                    text/plain:
+               400:
+                 description: "Bad request"
+               404:
+                 description: "openapi not found"
+                 body:
+                   text/plain:
+                     example: "openapi not found"
+               500:
+                 description: "Internal server error"
+                 body:
+                   text/plain:
+                     example: "Internal server error, contact administrator"
+  /test:
+    post:
+        description: post
+        body:
+          application/json:
+                    schema: openapiApplyTenant
+  /test1:
+      post:
+          description: TenantApplyTB2Entity
+          body:
+            application/json:
+                      schema: TenantApplyTB2Entity
+  /test2:
+      post:
+          description: TenantApplyTB2Entity
+          body:
+            application/json:
+                      schema: ArrayEntity
+  /test3:
+      post:
+          description: TenantApplyTB2Entity
+          body:
+            application/json:
+                      schema: openapi

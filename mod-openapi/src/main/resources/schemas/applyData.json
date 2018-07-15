@@ -1,0 +1,16 @@
+{
+  "title": "create authorize openapi for tenant Schema",
+  "type": "object",
+  "properties": {
+    "log": {
+      "type": "object",
+      "required": true,
+      "$ref":"log"
+    },
+    "openapiApplyData": {
+      "type": "object",
+      "required": true,
+      "$ref":"apply"
+    }
+  }
+}

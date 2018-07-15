@@ -1,0 +1,82 @@
+{
+  "title": "create clientKeyInfo.json Schema",
+  "type":"object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": true
+    },
+    "tenantID": {
+      "type": "string",
+      "required": true
+    },
+    "tenantName": {
+      "type": "string",
+      "required": true
+    },
+    "appName": {
+      "type": "string",
+      "required": true
+    },
+    "appUrl": {
+      "type": "string",
+      "required": true
+    },
+    "applyMan": {
+      "type": "string",
+      "required": true
+    },
+    "applyManEmail": {
+      "type": "string",
+      "required": true
+    },
+    "applyManPhone": {
+      "type": "string",
+      "required": true
+    },
+    "applyDate": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    },
+    "clientId": {
+      "type": "string",
+      "required": true
+    },
+    "clientSecret": {
+      "type": "string",
+      "required": true
+    },
+    "authModel": {
+      "type": "string",
+      "required": true
+    },
+    "approveDate": {
+      "type": "string",
+      "required": false
+    },
+    "refuseDate": {
+      "type": "string",
+      "required": false
+    },
+    "startDate": {
+      "type": "string",
+      "required": false
+    },
+    "refuseReason": {
+      "type": "string",
+      "required": false
+    },
+    "startReason": {
+      "type": "string",
+      "required": false
+    },
+    "expireDate": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

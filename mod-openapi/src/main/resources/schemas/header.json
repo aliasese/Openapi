@@ -1,0 +1,10 @@
+{
+  "title": "Token Header Schema",
+  "type": "object",
+  "properties": {
+    "X-Okapi-Token": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

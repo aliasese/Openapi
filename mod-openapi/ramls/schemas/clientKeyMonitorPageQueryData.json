@@ -1,0 +1,34 @@
+{
+  "title": "create clientKeyMonitorPageQueryResp.json Schema",
+  "type": "object",
+  "properties": {
+    "id":{
+      "type":"string",
+      "required": false
+    },
+    "tenantID":{
+      "type":"string",
+      "required": true
+    },
+    "tenantName":{
+      "type":"string",
+      "required": true
+    },
+    "appName":{
+      "type":"string",
+      "required": true
+    },
+    "clientSecret":{
+      "type":"string",
+      "required": true
+    },
+    "expireDate":{
+      "type":"string",
+      "required": true
+    },
+    "status":{
+      "type":"string",
+      "required": true
+    }
+  }
+}

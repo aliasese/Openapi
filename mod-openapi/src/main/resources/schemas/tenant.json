@@ -1,0 +1,16 @@
+{
+  "title": "create Tenant Schema",
+  "type": "object",
+  "properties": {
+    "id":{
+      "type":"string",
+      "required":false
+    },
+    "openapiArray": {
+      "type":"array",
+      "items":{
+        "type":"string"
+      }
+    }
+  }
+}

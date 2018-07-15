@@ -1,0 +1,10 @@
+{
+  "title": "reason.json Schema",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

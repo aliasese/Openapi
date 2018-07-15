@@ -1,0 +1,262 @@
+#%RAML 0.8
+title: OpenAPI
+version: v1.0.1
+
+documentation:
+  - title: Open-API Management API
+    content: This documents the API calls that can be made to query and manage openapis of the system
+
+schemas:
+  - PageQueryResp: !include schemas/PageQueryResp.json
+  - createResp: !include schemas/createResp.json
+  - CommonParam: !include schemas/Param.json
+  - openapiInfo: !include schemas/openapi.json
+  - openapis: !include schemas/openapis.json
+  - openapiEntity: !include schemas/openapi.json
+  - openapiCollection: !include schemas/openapis.json
+  - openapi_apply.json: !include schemas/openapi_apply.json
+  - openapiAppliesCollection: !include schemas/openapi_applies.json
+  - openapi_authorization.json: !include schemas/openapi_authorization.json
+  - openapiAuthorizationsCollection: !include schemas/openapi_authorizations.json
+  - openapi_pagequeryCondition: !include schemas/openapi_pagequeryCondition.json
+  - openapiData: !include schemas/openapiData.json
+  - log: !include schemas/log.json
+  - StartOpenapi: !include schemas/StartOpenapi.json
+  - StopOpenapi: !include schemas/StartOpenapi.json
+  - ArrayEntity: !include schemas/ArrayEntity.json
+  - Name: !include schemas/openapi/Name.json
+
+traits:
+  - pageable: !include ../raml-util/traits/pageable.raml
+  - tenant: !include ../raml-util/traits/tenant.raml
+  - searchable: !include ../raml-util/traits/searchable.raml
+
+/openapi:
+  /check/name:
+    post:
+      description: "Check if OpenAPI name exists"
+      body:
+            application/json:
+              schema: Name
+      responses:
+           200:
+             description: "Check if OpenAPI name exists"
+             body:
+               text/plain:
+                  example: "success"
+           400:
+             description: "Bad request"
+             body:
+               text/plain:
+                 example: "Name has existed"
+           500:
+             description: "Internal server error"
+             body:
+               text/plain:
+                 example: "Internal server error, contact administrator"
+  post:
+    description: Return a list of openapi
+    body:
+      application/json:
+        schema: openapi_pagequeryCondition
+    responses:
+          200:
+            description: "returns a list of openapis successfully"
+            body:
+              application/json:
+                schema: openapiCollection
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Bad request"
+          404:
+            description: "OpenAPI not found"
+            body:
+              text/plain:
+                example: "OpenAPI not found"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+  /create/post:
+    post:
+      description: create a openapi
+      body:
+       application/json:
+        schema: openapiData
+      responses:
+              200:
+                description: "Good request"
+                body:
+                  application/json:
+                    schema: createResp
+              400:
+                description: "Bad request"
+                body:
+                  text/plain:
+                    example: "Bad request"
+              500:
+                description: "Internal server error"
+                body:
+                  text/plain:
+                    example: "Internal server error"
+  /{id}:
+    put:
+      description: edit a openapi
+      body:
+        application/json:
+          schema: openapiData
+      responses:
+        200:
+          description: "returns a updated openapi successfully"
+          body:
+           application/json:
+             schema: createResp
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+              example: "Fail to start Openapi"
+        404:
+          description: "openapi not found"
+          body:
+            text/plain:
+              example: "openapi not found"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+    get:
+       description: get information of a openapi
+       responses:
+           200:
+             description: "returns a openapi successfully"
+             body:
+               application/json:
+                 schema: openapiInfo
+           400:
+             description: "Bad request"
+             body:
+               text/plain:
+                 example: "Bad Request"
+           404:
+             description: "openapi not found"
+             body:
+               text/plain:
+                 example: "openapi not found"
+           500:
+             description: "Internal server error"
+             body:
+               text/plain:
+                 example: "Internal server error, contact administrator"
+    post:
+       description: delete a openapi
+       body:
+        application/json:
+          schema: log
+       responses:
+            200:
+              description: "Delete a openapi successfully"
+              body:
+               application/json:
+                 schema: createResp
+            400:
+              description: "Bad Request"
+              body:
+                text/plain:
+                  example: "Bad Request"
+            404:
+              description: "openapi not found"
+              body:
+                text/plain:
+                  example: "openapi not found"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+  /delete/{id}:
+      post:
+        description: Delete OpenAPI 注册信息
+        body:
+          application/json:
+            schema: log
+        responses:
+            200:
+              description: "Delete OpenAPI 注册信息 successfully"
+              body:
+               application/json:
+                 schema: createResp
+            404:
+              description: "OpenAPI not found"
+              body:
+                text/plain:
+                  example: "OpenAPI not found"
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Delete OpenAPI 注册信息出现异常"
+            500:
+              description: "openapi server error"
+              body:
+                text/plain:
+                  example: "openapi server error"
+  /start/post:
+    post:
+      description: start a openapi service
+      body:
+        application/json:
+          schema: StartOpenapi
+      responses:
+          200:
+            description: "returns openapi starting successfully"
+            body:
+              application/json:
+                schema: ArrayEntity
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail to start Openapi"
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+
+  /stop/post:
+    post:
+      description: stop a openapi service
+      body:
+        application/json:
+          schema: StopOpenapi
+      responses:
+          200:
+            description: "returns openapi stopping successfully"
+            body:
+              application/json:
+                schema: ArrayEntity
+          400:
+            description: "Bad request"
+            body:
+              text/plain:
+                example: "Fail to start Openapi"
+          404:
+            description: "openapi not found"
+            body:
+              text/plain:
+                example: "openapi not found"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"

@@ -1,0 +1,11 @@
+{
+  "title": "Check if title exist entity",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "title": {
+      "type":"string",
+      "required":true
+    }
+  }
+}
